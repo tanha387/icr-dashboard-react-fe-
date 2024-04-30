@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter-medium";
+  src: url("../assets/fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Inter-bold";
+  src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+:root {
+  --white: #fff;
+  --black: #000000;
+  --lightBlack: #272e35;
+  --offWhite: #fffcfa;
+  --lightGrey: #eaedf0;
+  --neutralBlue: #4a545e;
+  --grey: #f0f3f5;
+  --grey1: #e5eeff;
+  --grey2: #f5f7f9;
+  --grey3: #7e8c9a;
+  --darkBlue: #1e50c0;
+  --orange: #ff5a00;
+  --orange1: #f59638;
+  --lightGreen: #c6f1da;
+  --green1: #0e4e30;
+  --lightRed: #fcd9d9;
+  --deepRed: #6f2020;
+  --steelBlue: #555f6d;
+  --progressBlue: #3062d4;
+
+  --orange2: rgba(252, 222, 192, 1);
+  --orange3: rgba(255, 232, 209, 1);
+  --orange4: rgba(255, 212, 168, 1);
+}
+
+*,
+*:before,
+*:after {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 100%;
+  width: 100%;
+  max-height: 100%;
+  height: 100%;
+  min-height: unset !important;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.input-range {
+  max-width: 365px;
+  width: 200px;
+}
+
+.input-range__slider {
+  position: relative;
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
+}
+
+.input-range__slider::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background-color: var(--white);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input-range__track--active {
+  background-color: var(--orange);
+}
+
+.input-range__label--value {
+  left: -18px !important;
+  top: -2.8rem !important;
+  width: 35px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: var(--lightBlack);
+  color: var(--white);
+}
+
+.input-range__label--value::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--lightBlack);
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.input-range__label-container {
+  left: 44% !important;
+}

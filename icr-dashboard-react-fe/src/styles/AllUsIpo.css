@@ -1,0 +1,80 @@
+/* Width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--grey1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--grey3);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grey3);
+}
+
+.sidebar-transition {
+  transition: width 0.5s ease-in-out;
+}
+
+.fixed-table thead th:first-child,
+.fixed-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  padding: 8px 16px;
+  border-right: 1px solid var(--lightGrey);
+  border-bottom: 1px solid var(--lightGrey);
+  background-color: var(--white);
+  /* Set background color as needed */
+}
+
+.fixed-table thead th:first-child {
+  background-color: var(--grey2);
+}
+
+/* .canvasjs-chart-container {
+  height: 300px !important;
+  width: 300px !important;
+} */
+
+.canvasjs-chart-credit {
+  display: none !important;
+}
+.pieContainer > :first-child {
+  height: 350px !important;
+}
+.canvasjs-chart-canvas {
+  height: max-content !important;
+  max-width: 300px !important;
+  width: 300px !important;
+}
+
+.pxCustom {
+  width: 350px !important;
+  height: 250px !important;
+}
+.pxCustom .canvasjs-chart-canvas {
+  width: 500px !important;
+  height: 200px !important;
+}
+
+.tableLoadingPosition {
+  position: relative;
+  transform: translate(346%, 0%);
+}
+
+@media screen and (max-width: 622px) {
+  .legendsContainer {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+}
