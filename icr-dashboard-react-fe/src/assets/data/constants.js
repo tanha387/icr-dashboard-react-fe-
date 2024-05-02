@@ -213,6 +213,29 @@ export const icrIndiviualIpoTableHeadersData = [
 
 export const icrIndiviualIpoBodyData = [
   {
+    id: 1,
+    ipoId: 2,
+    investorDetails: {
+      investorName: "Nykredit Asset Management",
+      type: "Hedge Fund",
+      turnover: "Medium",
+      engagementRating: 76,
+      meetings: "50",
+      firstDraftAllocation: "1800000",
+      finalAllocation: "3100000",
+      percentOfAllocation: "8.34",
+      percentOfChange: "-10",
+      subcategories: [
+        {
+          category1: "Fidelity Advisor Series I - Equity Growth Fund",
+          category2: "Fidelity Advisor Series VII - Semiconductors Fund",
+          category3: "Fidelity Advisor Series V",
+          category4: "Fidelity Advisor Series V",
+        },
+      ],
+    },
+  },
+  {
     id: 5,
     ipoId: 2,
     investorDetails: {

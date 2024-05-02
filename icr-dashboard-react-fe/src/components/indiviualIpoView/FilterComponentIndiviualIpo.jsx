@@ -11,10 +11,12 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
     return null;
   }
 
+  const subcategories = investorData.investorDetails.subcategories;
+
   return (
     <div className="p-4 border-b">
-      {investorData.investorDetails.subcategories.map(
-        (subcategory, subIndex) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+        {subcategories.map((subcategory, subIndex) => (
           <div key={subIndex} className="flex flex-col">
             {Object.entries(subcategory).map(([key, value]) => (
               <p
@@ -25,8 +27,8 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
               </p>
             ))}
           </div>
-        )
-      )}
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,52 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IndiviualIpoTabsInfo } from "../../assets/data/constants";
+import LoadingComponent from "../../components/LoadingComponent.jsx";
 
 const IndividualIpoTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeSubcategory, setActiveSubcategory] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
     setActiveSubcategory(0);
+    setLoading(true);
   };
 
   const handleSubcategoryClick = (subcategoryIndex) => {
     setActiveSubcategory(subcategoryIndex);
+    setLoading(true);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [activeTab, activeSubcategory]);
+
   const renderSubcategoryComponent = () => {
-    if (activeTab !== null && activeSubcategory !== null) {
-      const tab = IndiviualIpoTabsInfo[activeTab];
-      const subcategory = tab.subcategories[activeSubcategory];
-      return <subcategory.component />;
-    }
-    return null;
+    const tab = IndiviualIpoTabsInfo[activeTab];
+    const subcategory = tab.subcategories[activeSubcategory];
+    return <subcategory.component />;
   };
 
   return (
     <div className="ms-2">
       {/* Tab section */}
-      <ul className="flex flex-wrap overflow-x-auto  border-b-2 border-lightGrey ">
+      <ul className="flex flex-wrap overflow-x-auto border-b border-lightGrey">
         {IndiviualIpoTabsInfo.map((tab, index) => (
           <li
             key={index}
-            className={` font-inter-bold text-sm leading-6 text-left mt-1 border-b-2 
-          
-            
-            
-
-             ${
-               index === activeTab
-                 ? "border-orange1 border-b-2 "
-                 : "border-transparent"
-             }`}
+            className={`font-inter-bold text-sm leading-6 text-left mt-1 border-b ${
+              index === activeTab ? "border-orange1" : "border-transparent"
+            }`}
           >
             <button
               onClick={() => handleTabClick(index)}
-              className={` py-2 px-3 me-2 ${
+              className={`py-2 px-3 me-2 ${
                 index === activeTab
-                  ? "text-lightBlack font-inter-bold text-sm  "
-                  : "font-inter text-sm text-neutralBlue leading-6 tracking-tight text-left"
+                  ? "text-lightBlack font-inter-bold text-sm"
+                  : "font-inter text-sm text-neutralBlue"
               }`}
             >
               {tab.label}
@@ -56,19 +58,18 @@ const IndividualIpoTabs = () => {
       </ul>
 
       {/* Subcategory section */}
-
-      <div className="mt-1">
+      <div className="mt-4 ms-2">
         {IndiviualIpoTabsInfo.map((tab, index) => (
-          <div key={index} className={`${index === activeTab ? "" : "hidden"}`}>
+          <div key={index} className={index === activeTab ? "" : "hidden"}>
             {index === activeTab && tab.subcategories ? (
               <div>
                 {tab.subcategories.map((subcategory, subIndex) => (
                   <button
                     key={subIndex}
-                    className={`py-1 px-4 me-4 mt-2 ${
+                    className={` px-2 me-4 mt-2 ${
                       subIndex === activeSubcategory
-                        ? "border-orange1 border-2 text-black font-inter text-sm leading-6 tracking-tighter text-left rounded-md"
-                        : "border-gray-300 border-2 font-inter text-sm text-black leading-6 tracking-tighter text-left rounded-md"
+                        ? "border-orange1 border text-black font-inter text-sm leading-6 tracking-tighter text-left rounded-md"
+                        : "border-gray-300 border font-inter text-sm text-black leading-6 tracking-tighter text-left rounded-md"
                     }`}
                     onClick={() => handleSubcategoryClick(subIndex)}
                   >
@@ -81,8 +82,10 @@ const IndividualIpoTabs = () => {
         ))}
       </div>
 
-      {/* Render subcategory component */}
-      <div className="mt-4">{renderSubcategoryComponent()}</div>
+      {/* Render subcategory component with loader */}
+      <div className="mt-4">
+        {loading ? <LoadingComponent /> : renderSubcategoryComponent()}
+      </div>
     </div>
   );
 };

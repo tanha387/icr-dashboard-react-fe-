@@ -8,7 +8,7 @@ const Breadcrumb = () => {
           <li className="flex items-center">
             <a
               href="#"
-              className="font-inter text-sm  text-neutralBlue md:text-lg font-medium  text-left p-3"
+              className="font-inter-medium text-sm  text-neutralBlue md:text-lg font-medium  text-left p-3"
             >
               ALL ICR IPOS
             </a>
@@ -31,7 +31,7 @@ const Breadcrumb = () => {
                   d="m1 9 4-4-4-4"
                 />
               </svg>
-              <span className="ms-1 font-inter text-sm text-neutralBlue md:text-lg  text-left ">
+              <span className="ms-1 font-inter text-xs text-neutralBlue md:text-lg  text-left ">
                 Indiviual IPO Detail
               </span>
             </div>

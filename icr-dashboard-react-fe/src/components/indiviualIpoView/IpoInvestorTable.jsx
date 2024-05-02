@@ -3,22 +3,35 @@ import {
   icrIndiviualIpoBodyData,
   icrIndiviualIpoTableHeadersData,
 } from "../../assets/data/constants";
-
 import FilterComponentIndivoiualIpo from "../../components/indiviualIpoView/FilterComponentIndiviualIpo.jsx";
-
 import icon from "../../assets/images/Icons/Icon.svg";
 import downArrow from "../../assets/images/Icons/minus.svg";
 import LoadingComponent from "../../components/LoadingComponent.jsx";
 
 const IndiviualIpoviewTable = () => {
+  const [sortingCriteria, setSortingCriteria] = useState({
+    sortBy: null,
+    sortType: null,
+  });
   const [expandedRow, setExpandedRow] = useState(null);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  const [data, setData] = useState([]);
 
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        setData(icrIndiviualIpoBodyData);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const toggleAccordion = (index) => {
@@ -73,7 +86,7 @@ const IndiviualIpoviewTable = () => {
     return { backgroundColor, textColor, arrowImage };
   };
 
-  const getRotationClass = (value, textColor) => {
+  const getRotationClass = (value) => {
     if (value > 0) {
       return "rotate-180";
     } else {
@@ -81,9 +94,23 @@ const IndiviualIpoviewTable = () => {
     }
   };
 
+  const handleHeaderClick = (headerText) => {
+    const newSortType =
+      sortingCriteria[headerText]?.sortType === "desc" ? "asc" : "desc";
+
+    setSortingCriteria({
+      ...sortingCriteria,
+      [headerText]: { sortBy: headerText, sortType: newSortType },
+    });
+
+    setTimeout(() => {
+      console.log(
+        `Network request triggered for sorting by ${headerText} in ${newSortType} order`
+      );
+    }, 500);
+  };
   const cellStyles = "px-4 py-16 sm:px-6 sm:py-2 whitespace-nowrap";
   const cellStyless = "px-4 py-4 sm:px-6 sm:py-2 whitespace-nowrap";
-
   return (
     <div className="flex w-full bg-white border border-1 border-neutral-200 mt-8 rounded-lg">
       {loading ? (
@@ -91,7 +118,7 @@ const IndiviualIpoviewTable = () => {
       ) : (
         <div className="flex w-full items-center">
           <table className="w-full bg-slate-400 divide-y divide-gray-200">
-            <caption className="font-inter-bold text-lg text-lightBlack leading-8 tracking-tighter text-left p-5">
+            <caption className="font-inter-bold text-lg text-lightBlack leading-8 tracking-tighter text-left py-4 ps-6 ">
               Investors
             </caption>
             <thead className="w-full">
@@ -100,19 +127,22 @@ const IndiviualIpoviewTable = () => {
                   <th
                     key={index}
                     className={`px-4 py-2 whitespace-nowrap w-max text-left font-inter-bold text-xs font-semibold text-lightBlack  ${
-                      index === 0 ? " border-b border-lightGrey" : ""
+                      index === 0 ? "border-b border-lightGrey" : ""
                     }`}
-                    onClick={() => handleHeaderClick(tableHeader.value)}
+                    onClick={() => handleHeaderClick(tableHeader.label)}
                   >
                     <button className="flex items-center justify-start">
-                      {tableHeader?.label}
+                      {tableHeader.label}
                       {tableHeader.icon && (
                         <img
                           src={tableHeader.icon}
                           alt="Sort Icon"
-                          className={`w-[20
-                            \
-                            px] h-[20px] object-contain transition-all 0.8s ease-in-out`}
+                          className={`w-[20px] h-[20px] object-contain transition-all 0.8s ease-in-out transform ${
+                            sortingCriteria[tableHeader.label]?.sortType ===
+                            "desc"
+                              ? "rotate-180"
+                              : ""
+                          }`}
                         />
                       )}
                     </button>
@@ -125,7 +155,7 @@ const IndiviualIpoviewTable = () => {
                 <React.Fragment key={item.id}>
                   <tr className="border text-black my-16 font-inter text-sm font-semibold leading-6 text-left">
                     <td
-                      className="border-b px-4 py-1 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack"
+                      className="border-b px-6 py-1 whitespace-nowrap text-left font-inter-bold text-sm  text-lightBlack"
                       onClick={() => toggleAccordion(index)}
                     >
                       <img
@@ -133,14 +163,12 @@ const IndiviualIpoviewTable = () => {
                         alt="sort icon"
                         className="w-4 h-4 inline-block ml-1"
                       />
-
                       <span className="font-inter px-4 py-1 whitespace-nowrap w-max text-left text-sm font-medium text-black">
                         {item.investorDetails.investorName}
                       </span>
                     </td>
-
                     <td
-                      className={`${cellStyles} border-b pe-3 py-1 whitespace-nowrap w-max  font-inter text-sm font-medium text-lightBlack`}
+                      className={` border-b ps-4 py-1 whitespace-nowrap w-max  font-inter text-sm font-medium text-lightBlack`}
                     >
                       {item.investorDetails.type}
                     </td>
@@ -170,7 +198,6 @@ const IndiviualIpoviewTable = () => {
                         ></div>
                       </div>
                     </td>
-
                     <td
                       className={`${cellStyles} border-b px-4 py-1 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack`}
                     >
@@ -242,5 +269,4 @@ const IndiviualIpoviewTable = () => {
     </div>
   );
 };
-
 export default IndiviualIpoviewTable;
