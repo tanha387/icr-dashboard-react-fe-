@@ -5,6 +5,7 @@ import sortIcon from "../../assets/images/Icons/sortIcon.svg";
 import IndiviualIpoviewTable from "../../components/indiviualIpoView/IpoInvestorTable";
 import Page1 from "../../pages/NotFoundPage";
 import NotFoundPage from "../../pages/NotFoundPage";
+import Analysis from "../../components/indiviualIpoView/Analysis";
 
 export const icrOptionsData = [
   { value: "none", label: "-" },
@@ -126,7 +127,7 @@ export const IndiviualIpoTabsInfo = [
       {
         label: "Analysis",
         value: "subcategory_2",
-        component: NotFoundPage,
+        component: Analysis,
       },
     ],
   },
@@ -218,7 +219,7 @@ export const icrIndiviualIpoBodyData = [
     investorDetails: {
       investorName: "Nykredit Asset Management",
       type: "Hedge Fund",
-      turnover: "Medium",
+      turnover: "Low",
       engagementRating: 76,
       meetings: "50",
       firstDraftAllocation: "1800000",
@@ -241,7 +242,7 @@ export const icrIndiviualIpoBodyData = [
     investorDetails: {
       investorName: "Fidelity management and research",
       type: "Institutional Investor",
-      turnover: "Low",
+      turnover: "Medium",
       engagementRating: 11,
       meetings: "30",
       firstDraftAllocation: "5200000",

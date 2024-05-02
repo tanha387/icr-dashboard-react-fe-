@@ -45,11 +45,11 @@ const IndiviualIpoviewTable = () => {
   const getTurnoverColor = (turnover) => {
     switch (turnover) {
       case "Low":
-        return "bg-orange2 m-4 px-2 rounded-md";
+        return "bg-orange2 m-4 px-3 rounded-md";
       case "Medium":
-        return "bg-orange3 m-4 px-2 rounded-md";
+        return "bg-orange3 m-4 px-3 rounded-md";
       case "High":
-        return "bg-orange4 m-4 px-2 rounded-md";
+        return "bg-orange4 m-4 px-3 rounded-md";
       default:
         return "";
     }

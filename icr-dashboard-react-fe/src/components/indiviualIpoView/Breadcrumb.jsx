@@ -4,7 +4,7 @@ const Breadcrumb = () => {
   return (
     <div>
       <nav className="flex flex-wrap mt-5" aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-gray-700">
+        <ol className="flex flex-wrap items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="flex items-center">
             <a
               href="#"
@@ -31,7 +31,7 @@ const Breadcrumb = () => {
                   d="m1 9 4-4-4-4"
                 />
               </svg>
-              <span className="ms-1 font-inter text-xs text-neutralBlue md:text-lg  text-left ">
+              <span className="ms-1 font-inter  text-sm   text-neutralBlue  leading-6 tracking-tight md:text-lg  text-left ">
                 Indiviual IPO Detail
               </span>
             </div>
