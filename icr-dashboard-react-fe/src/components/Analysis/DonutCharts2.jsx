@@ -4,19 +4,19 @@ import Icon from "../../assets/images/Icons/Left.svg";
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const DonutCharts = () => {
+const DonutCharts2 = () => {
   const dataPoints = [
-    { name: "Hedge Fund", y: 31, color: "#F4BE37" },
-    { name: "Venture Capital", y: 9, color: "#FF9F40" },
-    { name: "Institutional Investor", y: 35, color: "#0D2535" },
-    { name: "Mutual Fund", y: 30, color: "#5388D8" },
+    { name: "High", y: 31, color: "#FF9528" },
+
+    { name: "Low", y: 9, color: "#FFF0E1" },
+    { name: "Medium", y: 35, color: "#FFC488" },
   ];
 
   const dataPoints2 = [
-    { name: "Mutual Fund", y: 45, color: "#5388D8" },
-    { name: "Hedge Fund", y: 11, color: "#F4BE37" },
-    { name: "Venture Capital", y: 25, color: "#FF9F40" },
-    { name: "Institutional Investor", y: 35, color: "#0D2535" },
+    { name: "High", y: 51, color: "#FF9528" },
+
+    { name: "Low", y: 13, color: "#FFF0E1" },
+    { name: "Medium", y: 8, color: "#FFC488" },
   ];
 
   const subtitleStyle = {
@@ -39,12 +39,6 @@ const DonutCharts = () => {
     ],
 
     data: [{ type: "doughnut", dataPoints }],
-    padding: {
-      top: 10,
-      bottom: 10,
-      left: 10,
-      right: 10,
-    },
   };
 
   const options2 = {
@@ -58,15 +52,9 @@ const DonutCharts = () => {
     ],
 
     data: [{ type: "doughnut", dataPoints: dataPoints2 }],
-
-    padding: {
-      top: 10,
-      bottom: 10,
-      left: 10,
-      right: 10,
-    },
   };
 
+  // Extract names and colors from dataPoints2
   const namesAndColors = dataPoints.map((point) => ({
     name: point.name,
     color: point.color,
@@ -80,10 +68,10 @@ const DonutCharts = () => {
       <div>
         <div className="flex flex-col sm:flex-row px-5">
           <CanvasJSChart options={options1} className="sm:mr-2  " />
-          <img src={Icon} className="w-24 h-9 mt-46 " />
+          <img src={Icon} className="w-24 h-9 mt-56 " />
           <CanvasJSChart options={options2} className="sm:ml-2 " />
         </div>
-        <div className="flex flex-wrap  space-x-6 ms-4 pb-9">
+        <div className="flex flex-wrap  space-x-6 ms-44 pb-9">
           {namesAndColors.map(({ name, color }, index) => (
             <div
               key={index}
@@ -104,4 +92,4 @@ const DonutCharts = () => {
   );
 };
 
-export default DonutCharts;
+export default DonutCharts2;

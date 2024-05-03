@@ -25,6 +25,7 @@ module.exports = {
         lightRed: "var(--lightRed)",
         deepRed: "var(--deepRed)",
         steelBlue: "var(--steelBlue)",
+        barchart: "var(--barchart)",
 
         progressBlue: "var(--progressBlue)",
         orange2: "rgba(252, 222, 192, 1)",

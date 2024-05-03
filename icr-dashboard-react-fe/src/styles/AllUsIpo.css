@@ -40,21 +40,19 @@
   background-color: var(--grey2);
 }
 
-/* .canvasjs-chart-container {
+.canvasjs-chart-container {
   height: 300px !important;
   width: 300px !important;
-} */
-
+}
+.custom-chart-class2 {
+  height: 70px !important;
+  width: 70px !important;
+}
 .canvasjs-chart-credit {
   display: none !important;
 }
 .pieContainer > :first-child {
   height: 350px !important;
-}
-.canvasjs-chart-canvas {
-  height: max-content !important;
-  max-width: 300px !important;
-  width: 300px !important;
 }
 
 .pxCustom {

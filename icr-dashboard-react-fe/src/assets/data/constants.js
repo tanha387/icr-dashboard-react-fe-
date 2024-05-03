@@ -5,7 +5,7 @@ import sortIcon from "../../assets/images/Icons/sortIcon.svg";
 import IndiviualIpoviewTable from "../../components/indiviualIpoView/IpoInvestorTable";
 import Page1 from "../../pages/NotFoundPage";
 import NotFoundPage from "../../pages/NotFoundPage";
-import Analysis from "../../components/indiviualIpoView/Analysis";
+import Analysis from "../../components/Analysis/Analysis";
 
 export const icrOptionsData = [
   { value: "none", label: "-" },
