@@ -80,7 +80,7 @@ const DonutCharts = () => {
       <div>
         <div className="flex flex-col sm:flex-row px-5">
           <CanvasJSChart options={options1} className="sm:mr-2  " />
-          <img src={Icon} className="w-24 h-9 mt-46 " />
+          <img src={Icon} className="w-24 h-9 mt-48 " />
           <CanvasJSChart options={options2} className="sm:ml-2 " />
         </div>
         <div className="flex flex-wrap  space-x-6 ms-4 pb-9">
