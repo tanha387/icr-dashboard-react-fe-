@@ -6,6 +6,7 @@ import IndiviualIpoviewTable from "../../components/indiviualIpoView/IpoInvestor
 import Page1 from "../../pages/NotFoundPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import Analysis from "../../components/Analysis/Analysis";
+import AnalysisView from "../../components/AnalysisView/AnalaysisView";
 
 export const icrOptionsData = [
   { value: "none", label: "-" },
@@ -138,7 +139,7 @@ export const IndiviualIpoTabsInfo = [
       {
         label: "Subcategory 1",
         value: "subcategory_1",
-        component: Page1,
+        component: AnalysisView,
       },
       {
         label: "Subcategory 2",

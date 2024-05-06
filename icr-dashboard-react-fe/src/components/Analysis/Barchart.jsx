@@ -141,7 +141,7 @@ const Barchart = () => {
           { x: 59, y: 100000 },
           { x: 60, y: 100000 },
         ],
-        columnWidth: 1,
+        columnWidth: "100%",
       },
 
       {
@@ -153,7 +153,7 @@ const Barchart = () => {
         yValueFormatString: "#",
         color: "#F59638",
         dataPoints: [{}],
-        columnWidth: 1,
+        columnWidth: "100%",
       },
     ],
     clustered: true,
