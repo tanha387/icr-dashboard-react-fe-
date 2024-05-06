@@ -6,9 +6,8 @@ import Barchart from "./Barchart";
 const Analysis = () => {
   return (
     <div>
-      <div className="flex">
+      <div className="md:flex lg:flex-nowrap block gap-8 w-full">
         <DonutCharts />
-        <div className="w-8" /> {/* Adjust the width for the desired gap */}
         <DonutCharts2 />
       </div>
 

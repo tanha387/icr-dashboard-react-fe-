@@ -7,22 +7,30 @@ const Barchart = () => {
   const options = {
     animationEnabled: true,
     axisX: {
+      lineColor: "#d9d9d9",
+      tickColor: "#d9d9d9",
+      gridThickness: 1,
+      stripLines: [
+        { value: 2000000, color: "#DCDCDC33" },
+        { value: 4000000, color: "#DCDCDC33" },
+        { value: 6000000, color: "#DCDCDC33" },
+      ],
+      gridColor: "#DCDCDC",
       title: "",
       labelFormatter: function () {
         return "";
       },
-      lineColor: "#D3D3D3",
-      tickColor: "#D3D3D3",
-      gridColor: "#D3D3D3",
-      stripLines: [
-        {
-          startValue: 4,
-          endValue: 6,
-          color: "#ffffff",
-        },
-      ],
+      interval: 10,
     },
+
     axisY: {
+      gridColor: "#DCDCDC33",
+      stripLines: [
+        { value: 0, color: "#DCDCDC33" },
+        { value: 2000000, color: "#DCDCDC33" },
+        { value: 4000000, color: "#DCDCDC33" },
+        { value: 6000000, color: "#DCDCDC33" },
+      ],
       labelFormatter: function (e) {
         switch (e.value) {
           case 0:
@@ -37,25 +45,41 @@ const Barchart = () => {
             return "";
         }
       },
-      lineColor: "#d9d9d9",
+
+      labelFontColor: "grey",
+      labelFontFamily: "Inter",
+      labelFontSize: 12,
+      lineColor: "#ffffff",
       tickColor: "#d9d9d9",
-      gridColor: "#f5f5f5",
-      gridThickness: 1, // Thickness of grid lines
-      gridDashType: "dash", // Type of grid lines (solid, dash, dot, etc.)
+
+      gridDashType: "dash",
     },
     toolTip: {
       shared: true,
+    },
+    legend: {
+      horizontalAlign: "left",
+      margin: 20,
+      padding: 10,
+      fontFamily: "Inter",
+      fontSize: 11,
+      fontColor: "grey",
+      margin: 20,
+      itemMaxWidth: 150,
+      itemWrap: true,
     },
     data: [
       {
         type: "column",
         name: "First Draft",
-
         showInLegend: true,
+
+        legendText: "First Draft",
         yValueFormatString: "#",
-        color: "#5388D899", // Original color for columns
+        color: "#5388D899",
+
         dataPoints: [
-          { x: 0, y: 5500000 },
+          { x: 0, y: 5900000 },
           { x: 1, y: 5500000 },
           { x: 2, y: 4800000 },
           { x: 3, y: 4900000 },
@@ -116,25 +140,34 @@ const Barchart = () => {
           { x: 58, y: 100000 },
           { x: 59, y: 100000 },
           { x: 60, y: 100000 },
-          { x: 61, y: 100000 },
-          { x: 62, y: 100000 },
-          { x: 63, y: 100000 },
-          { x: 64, y: 0 },
         ],
+        columnWidth: 1,
+      },
+
+      {
+        type: "column",
+        name: "Second Draft",
+
+        showInLegend: true,
+        legendText: "Final Allocation",
+        yValueFormatString: "#",
+        color: "#F59638",
+        dataPoints: [{}],
+        columnWidth: 1,
       },
     ],
+    clustered: true,
   };
 
   return (
-    <div className="border bg-white rounded-lg shadow-lg mt-8 h-[503px] 	max-w-[1436px] w-full">
-      <h2 className="text-left text-lg font-semibold leading-7 font-inter-bold border-b p-5 text-lightBlack">
+    <div className="border bg-white rounded-lg shadow-lg mt-8 h-[503px] w-full pt-4 pb-4">
+      <h2 className="text-left text-lg font-semibold leading-7 font-inter-bod border-b p-5 text-lightBlack">
         Investor Distribution / Tai
       </h2>
-      <div className="p-8">
+      <div className="w-max-[1342px] w-full px-8 py-5 ms-4">
         <CanvasJSChart options={options} />
       </div>
     </div>
   );
 };
-
 export default Barchart;

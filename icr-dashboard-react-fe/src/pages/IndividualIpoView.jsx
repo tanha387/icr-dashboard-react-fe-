@@ -4,20 +4,16 @@ import Breadcrumb from "../components/indiviualIpoView/Breadcrumb";
 import trend from "../assets/images/Icons/Trend.svg";
 import IndividualIpoTabs from "../components/indiviualIpoView/IpoTabs";
 import LoadingComponent from "../components/LoadingComponent.jsx";
-
 const IndividualIpoView = () => {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
-
   return (
-    <div className="ps-4">
+    <div>
       {loading ? (
         <div className="flex justify-center items-center h-full mt-60">
           <LoadingComponent />
@@ -25,7 +21,7 @@ const IndividualIpoView = () => {
       ) : (
         <>
           <Breadcrumb />
-          <div className="h-44 grid grid-cols-1 grid-flow-col gap-4 p-4">
+          <div className="md:flex block justify-between mb-8">
             <div className="col-span-2 sm:col-span-1">
               <div className="flex flex-col">
                 <div className="flex items-center pb-6">
@@ -56,12 +52,11 @@ const IndividualIpoView = () => {
                 </h6>
               </div>
             </div>
-            <div className="flex ">
+            <div className="flex">
               <div className="w-[155px] h-[100px]   me-4 rounded-md py-4 px-3 items-center border border-1 border-neutral-200 bg-white">
                 <h3 className="font-inter text-sm font-medium leading-6 tracking-normal text-center pt-2 text-steelBlue ">
                   Inverstor Contacts
                 </h3>
-
                 <div className="flex pt-2">
                   <h3 className="font-inter-bold text-3xl ps-3 text-steelBlue  ">
                     140
@@ -96,5 +91,4 @@ const IndividualIpoView = () => {
     </div>
   );
 };
-
 export default IndividualIpoView;
