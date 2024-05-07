@@ -40,10 +40,6 @@
   background-color: var(--grey2);
 }
 
-.canvasjs-chart-container {
-  height: 300px !important;
-  width: 300px !important;
-}
 .custom-chart-class2 {
   height: 70px !important;
   width: 70px !important;

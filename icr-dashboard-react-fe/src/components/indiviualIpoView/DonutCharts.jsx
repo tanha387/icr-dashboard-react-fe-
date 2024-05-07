@@ -67,7 +67,7 @@ const DonutCharts = () => {
         Distribution of Investor Type
       </h1>
       <div>
-        <div className="flex flex-col sm:flex-row  sm:flex-row  px-2 items-center">
+        <div className="flex flex-col sm:flex-row px-2 items-center">
           <CanvasJSChart options={options1} className="sm:mr-2  " />
           <img src={Icon} className="w-24 h-9" />
           <CanvasJSChart options={options2} className="sm:ml-2 " />
