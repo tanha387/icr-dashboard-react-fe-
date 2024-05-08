@@ -11,7 +11,6 @@ const centerTextPluginObject = {
     const canvas = chart.canvas;
     const text = chart.options.plugins.centerTextPlugin.text;
 
-    // Calculate the center of the donut chart dynamically
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
@@ -38,9 +37,9 @@ const DonutChart1 = () => {
     datasets: [
       {
         label: "First draft",
-        data: [30, 30, 30, 10],
-        backgroundColor: ["#5388D8", "#0D2535", "#F4BE37", "#FF9F40"],
-        borderColor: ["#5388D8", "#0D2535", "#F4BE37", "#FF9F40"],
+        data: [30, 30, 7, 33],
+        backgroundColor: ["#5388D8", "#F4BE37", "#FF9F40", "#0D2535"],
+        borderColor: ["#5388D8", "#F4BE37", "#FF9F40", "#0D2535"],
         borderWidth: 1,
       },
     ],
@@ -53,12 +52,13 @@ const DonutChart1 = () => {
       "Institutional Investor",
       "Mutual Fund",
     ],
+    colors: ["#F4BE37", "#FF9F40", "#0D2535", "#5388D8"],
     datasets: [
       {
         label: "Final Allocation",
-        data: [20, 30, 25, 25],
-        backgroundColor: ["#5388D8", "#0D2535", "#F4BE37", "#FF9F40"],
-        borderColor: ["#5388D8", "#0D2535", "#F4BE37", "#FF9F40"],
+        data: [60, 10, 25, 30],
+        backgroundColor: ["#5388D8", "#F4BE37", "#FF9F40", "#0D2535"],
+        borderColor: ["#5388D8", "#F4BE37", "#FF9F40", "#0D2535"],
         borderWidth: 1,
       },
     ],
@@ -100,25 +100,25 @@ const DonutChart1 = () => {
       <div className="border-b border-lightGrey p-5 font-inter-bold text-base leading-7 text-left text-lightBlack">
         Distribution of Investor Type
       </div>
-      <div class="flex justify-between mx-5 mt-6 sm:flex-row items-center flex-col sm:flex">
+      <div class="flex justify-between mx-2 mt-8 sm:flex-row items-center flex-col sm:flex">
         <div class="w-auto h-auto mx-4">
           <Doughnut data={data} options={options1} class="sm:mr-2" />
         </div>
-        <div class="flex justify-center items-center md:mx-auto">
-          <img src={Icon} class="w-24 h-9" />
-        </div>
+
+        <img src={Icon} class="w-full h-auto md:rotate-0 rotate-90" />
+
         <div class="w-auto h-auto mx-4 ">
           <Doughnut data={data2} options={options2} class="sm:mr-2" />
         </div>
       </div>
 
-      <div className="flex flex-wrap py-10 sm:flex-row flex-col justify-center sm:justify-start">
+      <div className="flex flex-wrap py-10 sm:flex-row flex-col justify-center sm:justify-start ms-3">
         {data.labels.map((label, index) => (
           <div key={index} className="flex sm:w-auto">
             <span
               className="w-3 h-3 rounded-full my-1 mx-5"
               style={{
-                backgroundColor: data.datasets[0].backgroundColor[index],
+                backgroundColor: data2.colors[index],
               }}
             ></span>
             <span className="text-sm font-inter text-steelBlue leading-5 tracking-normal text-left sm:text-xs md:text-sm lg:text-sm xl:text-sm">

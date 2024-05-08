@@ -128,7 +128,7 @@ export const IndiviualIpoTabsInfo = [
       {
         label: "Analysis",
         value: "subcategory_2",
-        component: Analysis,
+        component: AnalysisView,
       },
     ],
   },
@@ -139,7 +139,7 @@ export const IndiviualIpoTabsInfo = [
       {
         label: "Subcategory 1",
         value: "subcategory_1",
-        component: AnalysisView,
+        component: Analysis,
       },
       {
         label: "Subcategory 2",
