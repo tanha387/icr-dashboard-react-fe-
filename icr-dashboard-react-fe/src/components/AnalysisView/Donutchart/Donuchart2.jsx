@@ -41,12 +41,7 @@ const DonutChart2 = () => {
   };
 
   const data2 = {
-    labels: [
-      "Hedge Fund",
-      "Venture Capital",
-      "Institutional Investor",
-      "Mutual Fund",
-    ],
+    labels: ["High", "Medium", "Low"],
     colors: ["#FF9528", "#FFC488", "#FFF0E1"],
     datasets: [
       {
