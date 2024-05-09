@@ -105,6 +105,7 @@ const FinalAllocationTable = () => {
   };
   const cellStyles = "px-4 py-16 sm:px-6 sm:py-2 whitespace-nowrap";
   const cellStyless = "px-4 py-4 sm:px-6 sm:py-2 whitespace-nowrap";
+
   return (
     <div className="flex w-full h-auto  bg-white border border-1 border-neutral-200 mt-8 rounded-lg">
       {loading ? (
@@ -362,7 +363,7 @@ const FinalAllocationTable = () => {
                     {/* Expandable content */}
                     {expandedRow === index && (
                       <tr>
-                        <td colSpan="19">
+                        <td colSpan="11">
                           <FilterComponentIndivoiualIpo
                             investorName={item.investorDetails.investorName}
                           />

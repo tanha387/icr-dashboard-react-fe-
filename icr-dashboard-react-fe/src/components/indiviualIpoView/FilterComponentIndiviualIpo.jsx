@@ -10,6 +10,30 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
   if (!investorData) {
     return null;
   }
+  const headers = [
+    "Investor Name",
+    "Type",
+    "Engagement rating",
+    "Cornerstone",
+    "Indication",
+    "1st Draft Allocation",
+    "Allocated",
+    "% of Allocation",
+    "Allocation value",
+    "+90 days",
+    "+180 days",
+  ];
+  const formatValue = (value) => {
+    if (value >= 1000000000) {
+      return `${(value / 1000000000).toFixed(1)}B`;
+    } else if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)}M`;
+    } else if (value >= 1000) {
+      return `${(value / 1000).toFixed(1)}K`;
+    } else {
+      return value.toString();
+    }
+  };
 
   const getCellColors = (value) => {
     let backgroundColor, textColor, arrowImage;
@@ -34,56 +58,81 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
   };
 
   const subcategories = investorData.investorDetails.subcategories;
-  const cellStyles = "px-4 py-16 sm:px-6 sm:py-2 whitespace-nowrap";
 
   return (
-    <table className="table-auto">
-      <tbody>
+    <table className="table-auto w-full border-b">
+      <thead className="bg-transparent w-96">
+        <tr>
+          {headers.map((header, index) => (
+            <th
+              key={index}
+              className="ps-14 me-14   w-max whitespace-nowrap text-left font-inter-bold text-xs font-semibold text-white"
+            >
+              {header}
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody className="border-b">
         {subcategories.map((subcategory, subIndex) => (
-          <tr key={subIndex}>
-            <td className="py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.investorName}
-            </td>
-            <td className="py-2">{/* Provide content */}</td>
-            <td className="py-2">{/* Provide content */}</td>
-            <td className=" py-2">{/* Provide content */}</td>
-            <td className="py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td className="py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td className="py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td className=" py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td className=" py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td className=" py-2 font-inter whitespace-nowrap w-max text-left text-sm font-medium text-black">
-              {subcategory.meetings}
-            </td>
-            <td>
-              <span
-                className={`inline-block px-3 ${
-                  getCellColors(subcategory.percentOfChange).backgroundColor
-                } ${getCellColors(subcategory.percentOfChange).textColor}`}
-              >
-                <div className="flex justify-center items-center py-1 rounded-md">
-                  <img
-                    src={getCellColors(subcategory.percentOfChange).arrowImage}
-                    alt="Arrow"
-                    className={`w-4 h-4 mr-1 ${getRotationClass(
-                      subcategory.percentOfChange
-                    )}`}
-                  />
-                  {subcategory.percentOfAllocation} %
-                </div>
-              </span>
-            </td>
-          </tr>
+          <React.Fragment key={subIndex}>
+            <tr className="border text-black my-16  font-inter text-sm font-semibold leading-6 text-left border-b">
+              <td className="font-inter ps-8 whitespace-nowrap w-96 text-left text-sm font-medium text-black">
+                {subcategory.investorName}
+              </td>
+
+              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
+                {/* Provide content */}
+              </td>
+              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
+                {/* Provide content */}
+              </td>
+              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
+                {/* Provide content */}
+              </td>
+
+              <td className=" sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack ">
+                {subcategory.meetings}
+              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                {formatValue(subcategory.firstDraftAllocation)}
+              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                {formatValue(subcategory.firstDraftAllocation)}
+              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                {subcategory.meetings}
+              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                {subcategory.meetings}
+              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                {subcategory.meetings}
+              </td>
+
+              <td className="px-4 py-4 sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
+                <span
+                  className={`inline-block px-3 ${
+                    getCellColors(subcategory.percentOfChange).backgroundColor
+                  } ${getCellColors(subcategory.percentOfChange).textColor}`}
+                >
+                  <div className="flex justify-center items-center py-1 rounded-md">
+                    <img
+                      src={
+                        getCellColors(subcategory.percentOfChange).arrowImage
+                      }
+                      alt="Arrow"
+                      className={`w-4 h-4 mr-1 ${getRotationClass(
+                        subcategory.percentOfChange
+                      )}`}
+                    />
+                    {subcategory.percentOfAllocation} %
+                  </div>
+                </span>
+              </td>
+            </tr>
+          </React.Fragment>
         ))}
       </tbody>
     </table>
