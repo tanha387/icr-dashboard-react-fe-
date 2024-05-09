@@ -66,7 +66,7 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
           {headers.map((header, index) => (
             <th
               key={index}
-              className="ps-14 me-14   w-max whitespace-nowrap text-left font-inter-bold text-xs font-semibold text-white"
+              className="px-6  w-full whitespace-nowrap text-left font-inter-bold text-xs font-semibold text-white"
             >
               {header}
             </th>
@@ -78,22 +78,18 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
         {subcategories.map((subcategory, subIndex) => (
           <React.Fragment key={subIndex}>
             <tr className="border text-black my-16  font-inter text-sm font-semibold leading-6 text-left border-b">
-              <td className="font-inter ps-8 whitespace-nowrap w-96 text-left text-sm font-medium text-black">
+              <td className="ps-8 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack ms-7">
                 {subcategory.investorName}
               </td>
 
-              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
+              <td className="px-8 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
                 {/* Provide content */}
               </td>
-              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
-                {/* Provide content */}
-              </td>
-              <td className="p-16 sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack">
-                {/* Provide content */}
-              </td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack"></td>
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-left font-inter text-sm font-medium text-lightBlack"></td>
 
               <td className=" sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack ">
-                {subcategory.meetings}
+                {formatValue(subcategory.indication)}
               </td>
               <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
                 {formatValue(subcategory.firstDraftAllocation)}
@@ -102,18 +98,34 @@ const FilterComponentIndivoiualIpo = ({ investorName }) => {
                 {formatValue(subcategory.firstDraftAllocation)}
               </td>
               <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
-                {subcategory.meetings}
+                {subcategory.percentOfAllocation}%
               </td>
-              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
-                {subcategory.meetings}
+              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-center font-inter text-sm font-medium text-lightBlack">
+                ${formatValue(subcategory.firstDraftAllocation)}
               </td>
-              <td className="sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
-                {subcategory.meetings}
+              <td className="px-4 py-4 sm:px-6 sm:py-2 whitespace-nowrap w-max  font-inter text-sm font-medium text-lightBlack">
+                <span
+                  className={`inline-block px-5 ${
+                    getCellColors(subcategory.percentOfChange).backgroundColor
+                  } ${getCellColors(subcategory.percentOfChange).textColor}`}
+                >
+                  <div className="flex justify-center items-center py-1 rounded-md">
+                    <img
+                      src={
+                        getCellColors(subcategory.percentOfChange).arrowImage
+                      }
+                      alt="Arrow"
+                      className={`w-4 h-4 mr-1 ${getRotationClass(
+                        subcategory.percentOfChange
+                      )}`}
+                    />
+                    {subcategory.percentOfAllocation} %
+                  </div>
+                </span>
               </td>
-
               <td className="px-4 py-4 sm:px-6 sm:py-2 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack">
                 <span
-                  className={`inline-block px-3 ${
+                  className={`inline-block px-5 ${
                     getCellColors(subcategory.percentOfChange).backgroundColor
                   } ${getCellColors(subcategory.percentOfChange).textColor}`}
                 >

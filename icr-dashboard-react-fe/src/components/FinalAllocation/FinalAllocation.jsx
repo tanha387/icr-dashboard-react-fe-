@@ -282,7 +282,7 @@ const FinalAllocationTable = () => {
                         {formatValue(item.investorDetails.firstDraftAllocation)}
                       </td>
                       <td
-                        className={`${cellStyles} border-b px-4 py-1 whitespace-nowrap w-max text-right font-inter text-sm font-medium text-lightBlack`}
+                        className={`${cellStyles} border-b ps-8 py-1 whitespace-nowrap w-max text-center font-inter text-sm font-medium text-lightBlack`}
                       >
                         {formatValue(item.investorDetails.allocation)}
                       </td>
