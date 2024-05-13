@@ -814,3 +814,188 @@ export const finalAllocationHeadersData = [
     icon: sortIcon,
   },
 ];
+
+export const InvestorIPOData = [
+  {
+    ticker: "AAPL",
+    company: "Apple Inc.",
+    sector: "Technology",
+    cornerstone: "Yes",
+    pricing_Date: "2023-01-15",
+    final_Deal_size: "30000000",
+    allocation: "20%",
+    total_location: "20%",
+    market_cap: "7000000",
+    shares_of_ipo: "10000000",
+    Days90: "+5%",
+    Days180: "+10%",
+    Days270: "+15%",
+    Days360: "+20%",
+    id: 1,
+  },
+  {
+    ticker: "AAPL",
+    company: "Apple Inc.",
+    sector: "Technology",
+    cornerstone: "Yes",
+    pricing_Date: "2023-01-15",
+    final_Deal_size: "5000000",
+    allocation: "30%",
+    total_location: "20%",
+    market_cap: "70000",
+    shares_of_ipo: "300000000",
+    Days90: "+5%",
+    Days180: "+10%",
+    Days270: "+15%",
+    Days360: "-20%",
+    id: 1,
+  },
+  {
+    ticker: "AAPL ",
+    company: "Apple Inc. managemnet ltd",
+    sector: "Technology",
+    cornerstone: "Yes",
+    pricing_Date: "2023-01-15",
+    final_Deal_size: "20000",
+    allocation: "30%",
+    total_location: "20%",
+    market_cap: "2000",
+    shares_of_ipo: "600000",
+    Days90: "+5%",
+    Days180: "+10%",
+    Days270: "+15%",
+    Days360: "+20%",
+    id: 1,
+  },
+  {
+    ticker: "AAPL",
+    company: "Apple Inc.",
+    sector: "Technology",
+    cornerstone: "Yes",
+    pricing_Date: "2023-01-15",
+    final_Deal_size: "1000000",
+    allocation: "30%",
+    total_location: "20%",
+    market_cap: "4000000",
+    shares_of_ipo: "40000000",
+    Days90: "+5%",
+    Days180: "+10%",
+    Days270: "+15%",
+    Days360: "+20%",
+    id: 1,
+  },
+];
+
+export const InvestorHeadersData = [
+  {
+    label: "Ticker",
+    value: "investor_name",
+  },
+  {
+    label: "Company",
+    value: "type",
+  },
+
+  {
+    label: "Sector",
+    value: "engagement_rating",
+    icon: sortIcon,
+  },
+  {
+    label: "Cornerstone",
+    value: "corner_stone",
+    icon: sortIcon,
+  },
+  {
+    label: "Pricing Date",
+    value: "Indi",
+    icon: sortIcon,
+  },
+
+  {
+    label: "Final Deal Size",
+    value: "draft_allocation",
+    icon: sortIcon,
+  },
+
+  {
+    label: "% Of Allocation",
+    value: "%_of_allocation",
+    icon: sortIcon,
+  },
+  {
+    label: "Market Cap",
+    value: "first_allocation",
+    icon: sortIcon,
+  },
+  {
+    label: "Shares at IPO",
+    value: "first_allocation",
+  },
+
+  {
+    label: "+ 90 days",
+    value: "of_change",
+    icon: sortIcon,
+  },
+  {
+    label: "+ 180 days",
+    value: "of_change",
+    icon: sortIcon,
+  },
+  {
+    label: "+ 270 days",
+    value: "of_change",
+    icon: sortIcon,
+  },
+  {
+    label: "+ 360 days",
+    value: "of_change",
+    icon: sortIcon,
+  },
+  {
+    label: "Px",
+    value: "of_change",
+    icon: sortIcon,
+  },
+];
+
+export const Donutchart1firstAllcoation = [
+  {
+    ticker: "YDLE",
+    details: [
+      {
+        value: 89,
+        slug: "Institutional Investor",
+      },
+      {
+        value: 90,
+        slug: "Mutual Fund",
+      },
+      {
+        value: 98,
+        slug: "Venture Capital",
+      },
+    ],
+  },
+];
+
+export const Donutchart2firstAllcoation = [
+  {
+    ticker: "YDLE",
+    details: [
+      {
+        value: 10000,
+        slug: "Venture Capital",
+      },
+      {
+        value: 120000,
+        slug: "Mutual Fund",
+      },
+      {
+        value: 60000,
+        slug: "Institutional Investor",
+      },
+    ],
+  },
+];
