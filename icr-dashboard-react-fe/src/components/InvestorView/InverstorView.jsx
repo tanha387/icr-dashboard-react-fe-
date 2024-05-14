@@ -2,6 +2,8 @@ import React from "react";
 import rightArrowDir from "../../assets/images/Icons/downArrow.svg";
 import Breadcrumb from "./Breadcrumb";
 import InvestorViewTable from "./InvestorViewTable";
+import PieChart from "./Piechart";
+import DonutChart from "./Donutchat";
 
 const InverstorView = () => {
   return (
@@ -83,6 +85,10 @@ const InverstorView = () => {
         </div>
       </div>
       <InvestorViewTable></InvestorViewTable>
+      <div className="flex gap-7">
+        <PieChart className="w-1/2 mt-4" />
+        <DonutChart className="w-1/2" />
+      </div>
     </div>
   );
 };

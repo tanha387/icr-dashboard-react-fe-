@@ -1,6 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
+
 const BarChart = () => {
   const data = {
     labels: Array.from({ length: 64 }, (_, i) => (i + 1).toString()), // Generating labels from 1 to 64
@@ -27,7 +28,6 @@ const BarChart = () => {
       },
       {
         label: "Final Allocation",
-
         backgroundColor: "#F59638",
         borderColor: "#F59638",
         borderWidth: 1,
@@ -44,6 +44,7 @@ const BarChart = () => {
       },
     ],
   };
+
   const options = {
     maintainAspectRatio: false,
     scales: {
@@ -72,7 +73,7 @@ const BarChart = () => {
             family: "Inter",
             size: 12,
           },
-          precision: 0, // S
+          precision: 0,
           callback: function (value, index, values) {
             switch (value) {
               case 0:
@@ -100,23 +101,52 @@ const BarChart = () => {
           margin: 30,
           font: {
             family: "Inter",
-            size: 11, // Font size in pixels
+            size: 11,
             color: "#555F6D",
           },
           textAlign: "start",
         },
       },
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: "x",
+          speed: 20,
+          threshold: 10,
+        },
+        zoom: {
+          wheel: {
+            enabled: true,
+            mode: "x",
+          },
+          pinch: {
+            enabled: true,
+          },
+          drag: {
+            enabled: false,
+          },
+          limits: {
+            x: { minRange: 5, maxRange: 50 },
+            y: { minRange: 500, maxRange: 1000 },
+          },
+          resetButton: {
+            enabled: true,
+          },
+        },
+      },
     },
   };
+
   return (
-    <div className="w-full max-h-[503px] h-auto  border my-4 rounded-lg shadow-lg bg-white ">
-      <h2 className="border-b  p-5  text-left text-lg font-semibold leading-7 font-inter-bold  text-lightBlack">
+    <div className="w-full max-h-[503px] h-auto border my-4 rounded-lg shadow-lg bg-white">
+      <h2 className="border-b p-5 text-left text-lg font-semibold leading-7 font-inter-bold text-lightBlack">
         Investor Distribution / Tail
       </h2>
-      <div className="w-full h-[341px]  ps-5 mt-8 ">
+      <div className="w-full h-[341px] ps-5 mt-8">
         <Bar data={data} options={options} />
       </div>
     </div>
   );
 };
+
 export default BarChart;

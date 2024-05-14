@@ -13,8 +13,11 @@ export const formatValue = (value) => {
 };
 
 export const getCellColors = (value) => {
+  // Extract numerical value from the string
+  const numericValue = parseFloat(value.replace("%", ""));
+
   let backgroundColor, textColor, arrowImage;
-  if (value < 0) {
+  if (numericValue < 0) {
     backgroundColor = "bg-lightRed rounded-md  ";
     textColor = "text-deepRed";
     arrowImage = icon;
