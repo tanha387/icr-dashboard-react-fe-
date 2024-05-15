@@ -5,6 +5,7 @@ import sortIcon from "../../assets/images/Icons/sortIcon.svg";
 import IndiviualIpoviewTable from "../../components/indiviualIpoView/IpoInvestorTable";
 import Page1 from "../../pages/NotFoundPage";
 import NotFoundPage from "../../pages/NotFoundPage";
+import InvestorIPOTable from "../../components/InvestorIPOParticipation/InvestorIPOTable";
 
 import AnalysisView from "../../components/AnalysisView/AnalaysisView";
 import FinalAllocation from "../../components/FinalAllocation/WrapUp";
@@ -231,6 +232,7 @@ export const icrIndiviualIpoBodyData = [
       allocation: "1800000",
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
+      focus: "Aggressive",
       days: "45",
       subcategories: [
         {
@@ -291,6 +293,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "4.34",
       percentOfChange: "-60",
       days: "-15",
+      focus: "Aggressive",
       indication: "50000000",
       subcategories: [
         {
@@ -351,6 +354,7 @@ export const icrIndiviualIpoBodyData = [
       firstDraftAllocation: "1800000",
       finalAllocation: "3100000",
       percentOfAllocation: "8.34",
+      focus: "Aggressive",
       percentOfChange: "20",
       days: "-12",
       subcategories: [
@@ -412,6 +416,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       allocation: "1800000",
       percentOfChange: "-30",
+      focus: "Aggressive",
       days: "5",
       subcategories: [
         {
@@ -472,6 +477,7 @@ export const icrIndiviualIpoBodyData = [
       allocation: "1800000",
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
+      focus: "Yield",
       days: "12",
       subcategories: [
         {
@@ -532,6 +538,7 @@ export const icrIndiviualIpoBodyData = [
       allocation: "1800000",
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
+      focus: "Yield",
       days: "5",
       subcategories: [
         {
@@ -592,6 +599,7 @@ export const icrIndiviualIpoBodyData = [
       allocation: "1800000",
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
+      focus: "Yield",
       days: "88",
       subcategories: [
         {
@@ -652,6 +660,7 @@ export const icrIndiviualIpoBodyData = [
       allocation: "1800000",
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
+      focus: "Yield",
       days: "-45",
       subcategories: [
         {
@@ -713,6 +722,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
       allocation: "1800000",
+      focus: "Yield",
       days: "-25",
       subcategories: [
         {
@@ -997,5 +1007,73 @@ export const Donutchart2firstAllcoation = [
         slug: "Institutional Investor",
       },
     ],
+  },
+];
+
+export const InvestorIpoTabsInfo = [
+  {
+    label: "Investor Behaviour",
+    value: "investor_behaviour",
+    component: InvestorIPOTable,
+  },
+  {
+    label: "Analysis",
+    value: "final_allocation",
+    component: FinalAllocation,
+  },
+];
+
+export const investorHeadersData = [
+  {
+    label: "Investor Name",
+    value: "investor_name",
+  },
+  {
+    label: "Type",
+    value: "type",
+    icon: sortIcon,
+  },
+
+  {
+    label: "Turnover",
+    value: "turnover",
+    icon: sortIcon,
+  },
+  {
+    label: "Focus",
+    value: "firstDraftAllocation",
+    icon: sortIcon,
+  },
+  {
+    label: "Shares",
+    value: "allocation",
+    icon: sortIcon,
+  },
+
+  {
+    label: " Allocation Value",
+    value: "percentOfChange",
+    icon: sortIcon,
+  },
+
+  {
+    label: "+ 90 days",
+    value: "of_change",
+  
+  },
+  {
+    label: "+ 180 days",
+    value: "of_change",
+   
+  },
+  {
+    label: "+ 270 days",
+    value: "of_change",
+   
+  },
+  {
+    label: "+ 360 days",
+    value: "of_change",
+   
   },
 ];

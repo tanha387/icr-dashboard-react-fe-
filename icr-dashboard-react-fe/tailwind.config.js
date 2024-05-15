@@ -26,6 +26,9 @@ module.exports = {
         deepRed: "var(--deepRed)",
         steelBlue: "var(--steelBlue)",
         barchart: "var(--barchart)",
+        agrresive: "var(--agrresive)",
+        growth: "var(--growth)",
+        yield: "var(--yield)",
 
         progressBlue: "var(--progressBlue)",
         orange2: "rgba(252, 222, 192, 1)",

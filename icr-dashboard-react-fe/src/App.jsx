@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import Page1 from "./pages/Page1";
 import InverstorView from "./components/InvestorView/InverstorView";
+import InvestorIPOParticipation from "./components/InvestorIPOParticipation/InvestorIPOParticipation";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="page1" element={<Page1 />} />
           <Route path="/:id" element={<IndividualIpoView />} />
           <Route path="/all-investors" element={<InverstorView />} />
+          <Route path="/ipo-investors" element={<InvestorIPOParticipation />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

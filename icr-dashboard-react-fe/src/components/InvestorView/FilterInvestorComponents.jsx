@@ -36,3 +36,28 @@ export const getRotationClass = (value) => {
     return "";
   }
 };
+export const getTurnoverColor = (turnover) => {
+  switch (turnover) {
+    case "Low":
+      return "bg-orange2 m-4 px-3 rounded-md";
+    case "Medium":
+      return "bg-orange3 m-4 px-3 rounded-md";
+    case "High":
+      return "bg-orange4 m-4 px-3 rounded-md";
+    default:
+      return "";
+  }
+};
+
+export const getTurnoverColorFocus = (focus) => {
+  switch (focus) {
+    case "Growth":
+      return "bg-aggressive m-4 px-3 rounded-md opacity-1";
+    case "Aggressive":
+      return "bg-growth m-4 px-3 rounded-md opacity-1";
+    case "Yield":
+      return "bg-yield m-4 px-3 rounded-md";
+    default:
+      return "";
+  }
+};

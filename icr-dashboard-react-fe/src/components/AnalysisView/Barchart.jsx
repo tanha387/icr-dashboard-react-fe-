@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
 const BarChart = () => {
-  const data = {
-    labels: Array.from({ length: 64 }, (_, i) => (i + 1).toString()), // Generating labels from 1 to 64
+  const [clickedDataPoint, setClickedDataPoint] = useState(null);
+  const [previousData, setPreviousData] = useState({
+    chartData: { labels: [], datasets: [] },
+    clickedDataPoint: null,
+  });
+  const [chartData, setChartData] = useState({
+    labels: Array.from({ length: 64 }, (_, i) => (i + 1).toString()),
     datasets: [
       {
         label: "First Draft",
@@ -23,8 +28,6 @@ const BarChart = () => {
           480000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000,
           30000, 40000, 40000, 40000, 40000,
         ].sort((a, b) => b - a),
-        categoryPercentage: 1.0,
-        barPercentage: 0.7,
       },
       {
         label: "Final Allocation",
@@ -43,15 +46,41 @@ const BarChart = () => {
         ].sort((a, b) => b - a),
       },
     ],
+  });
+
+  const handleBarClick = (event) => {
+    const activeElement = event.chart.getElementsAtEventForMode(
+      event.native,
+      "nearest",
+      { intersect: true },
+      true
+    )[0];
+    if (activeElement) {
+      const dataIndex = activeElement.index;
+      setClickedDataPoint(dataIndex);
+
+      // Store the previous data and clickedDataPoint
+      const prevChartData = { ...chartData };
+      const prevClickedDataPoint = dataIndex;
+      setPreviousData({
+        chartData: prevChartData,
+        clickedDataPoint: prevClickedDataPoint,
+      });
+
+      // Set a timer to revert back to the previous state after 1 second
+      setTimeout(() => {
+        setChartData(prevChartData);
+        setClickedDataPoint(null);
+      }, 1000);
+    }
   };
 
-  const options = {
+  let options = {
     maintainAspectRatio: false,
+    onClick: (e) => handleBarClick(e),
     scales: {
       x: {
-        legend: {
-          display: true,
-        },
+        legend: { display: true },
         grid: {
           display: true,
           lineWidth: 2,
@@ -69,10 +98,7 @@ const BarChart = () => {
         ticks: {
           maxTicksLimit: 5,
           color: "rgba(0, 0, 0, 0.38)",
-          font: {
-            family: "Inter",
-            size: 12,
-          },
+          font: { family: "Inter", size: 12 },
           precision: 0,
           callback: function (value, index, values) {
             switch (value) {
@@ -95,47 +121,27 @@ const BarChart = () => {
       legend: {
         position: "bottom",
         align: "start",
-        labels: {
-          boxWidth: 10,
-          padding: 30,
-          margin: 30,
-          font: {
-            family: "Inter",
-            size: 11,
-            color: "#555F6D",
-          },
-          textAlign: "start",
-        },
-      },
-      zoom: {
-        pan: {
-          enabled: true,
-          mode: "x",
-          speed: 20,
-          threshold: 10,
-        },
-        zoom: {
-          wheel: {
-            enabled: true,
-            mode: "x",
-          },
-          pinch: {
-            enabled: true,
-          },
-          drag: {
-            enabled: false,
-          },
-          limits: {
-            x: { minRange: 5, maxRange: 50 },
-            y: { minRange: 500, maxRange: 1000 },
-          },
-          resetButton: {
-            enabled: true,
-          },
-        },
       },
     },
   };
+
+  if (clickedDataPoint !== null) {
+    options.scales.x.min = Math.max(clickedDataPoint - 3, 0);
+    options.scales.x.max = Math.min(
+      clickedDataPoint + 3,
+      chartData.labels.length
+    );
+    const minDataValue =
+      Math.min(
+        ...chartData.datasets.map((dataset) => dataset.data[clickedDataPoint])
+      ) * 0.8;
+    const maxDataValue =
+      Math.max(
+        ...chartData.datasets.map((dataset) => dataset.data[clickedDataPoint])
+      ) * 1.2;
+    options.scales.y.min = minDataValue;
+    options.scales.y.max = maxDataValue;
+  }
 
   return (
     <div className="w-full max-h-[503px] h-auto border my-4 rounded-lg shadow-lg bg-white">
@@ -143,7 +149,7 @@ const BarChart = () => {
         Investor Distribution / Tail
       </h2>
       <div className="w-full h-[341px] ps-5 mt-8">
-        <Bar data={data} options={options} />
+        <Bar data={chartData} options={options} />
       </div>
     </div>
   );
