@@ -9,6 +9,7 @@ import InvestorIPOTable from "../../components/InvestorIPOParticipation/Investor
 
 import AnalysisView from "../../components/AnalysisView/AnalaysisView";
 import FinalAllocation from "../../components/FinalAllocation/WrapUp";
+import IpoAnalysis from "../../components/InvestorIPOParticipation/IpoAnalysis";
 
 export const icrOptionsData = [
   { value: "none", label: "-" },
@@ -1019,7 +1020,7 @@ export const InvestorIpoTabsInfo = [
   {
     label: "Analysis",
     value: "final_allocation",
-    component: FinalAllocation,
+    component: IpoAnalysis,
   },
 ];
 
@@ -1059,21 +1060,17 @@ export const investorHeadersData = [
   {
     label: "+ 90 days",
     value: "of_change",
-  
   },
   {
     label: "+ 180 days",
     value: "of_change",
-   
   },
   {
     label: "+ 270 days",
     value: "of_change",
-   
   },
   {
     label: "+ 360 days",
     value: "of_change",
-   
   },
 ];

@@ -3,6 +3,7 @@ import DonutCharts from "../indiviualIpoView/unknown";
 import Donutchart1 from "./Donutchart/Donutchart1";
 import Barchart from "../AnalysisView/Barchart";
 import DonutChart2 from "./Donutchart/Donuchart2";
+import BarChart_optional from "./Barchart_optional";
 
 const AnalaysisView = () => {
   return (

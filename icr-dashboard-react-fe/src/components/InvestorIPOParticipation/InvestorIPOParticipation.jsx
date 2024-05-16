@@ -26,7 +26,7 @@ const InvestorIPOParticipation = () => {
 
   return (
     <div>
-      <h1 className="font-inter-bold text-2xl mt-4">
+      <h1 className="font-inter-bold text-2xl mt-9">
         Investor IPO Participation
       </h1>
 
