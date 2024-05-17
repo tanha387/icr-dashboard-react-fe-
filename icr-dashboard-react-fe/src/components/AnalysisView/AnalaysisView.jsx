@@ -1,9 +1,10 @@
 import React from "react";
-import DonutCharts from "../indiviualIpoView/unknown";
+
 import Donutchart1 from "./Donutchart/Donutchart1";
 import Barchart from "../AnalysisView/Barchart";
 import DonutChart2 from "./Donutchart/Donuchart2";
-import BarChart_optional from "./Barchart_optional";
+import BarChart_option from "./Barchart_optional";
+import BarChart2 from "./Barchart_optional";
 
 const AnalaysisView = () => {
   return (
@@ -19,7 +20,12 @@ const AnalaysisView = () => {
           <DonutChart2 />
         </div>
       </div>
-      <Barchart />
+      <div>
+        <Barchart className="mt-20" />
+      </div>
+      <div>
+        <BarChart2 className="mt-20" />
+      </div>
     </div>
   );
 };

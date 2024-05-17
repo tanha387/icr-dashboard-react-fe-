@@ -8,12 +8,14 @@ import {
 } from "../../../assets/data/constants.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 const centerTextPluginObject = {
   id: "centerTextPlugin",
   beforeDraw: (chart) => {
     const ctx = chart.ctx;
     const canvas = chart.canvas;
     const text = chart.options.plugins.centerTextPlugin.text;
+    const showText = chart.options.plugins.centerTextPlugin.showText;
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
@@ -21,7 +23,7 @@ const centerTextPluginObject = {
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#272E35";
+    ctx.fillStyle = showText ? "#272E35" : "transparent"; // Conditionally set fillStyle
     ctx.font = "600 14px Inter";
 
     ctx.fillText(text, centerX, centerY);
@@ -33,6 +35,7 @@ const centerTextPluginObject = {
 const DonutChart1 = () => {
   const [details1, setDetails1] = useState([]);
   const [details2, setDetails2] = useState([]);
+  const [showCenterTextPlugin, setShowCenterTextPlugin] = useState(true); // Initially true to show the center text
 
   useEffect(() => {
     try {
@@ -52,8 +55,6 @@ const DonutChart1 = () => {
   const values1 = details1.map((item) => item.value);
   const labels2 = details2.map((item) => item.slug);
   const values2 = details2.map((item) => item.value);
-  console.log("Labels:", labels1);
-  console.log("Values:", values1);
 
   const backgroundColor1 = ["#5388D8", "#F4BE37", "#FF9F40", "#0D2535"];
 
@@ -87,35 +88,28 @@ const DonutChart1 = () => {
       },
       centerTextPlugin: {
         text: "First Draft",
+        showText: showCenterTextPlugin,
       },
     },
     cutout: "60%",
   };
+
   const options2 = {
     plugins: {
       legend: {
         display: false,
       },
       centerTextPlugin: {
-        text: "Final Allocation",
+        text: "First Allocation",
+        showText: showCenterTextPlugin,
       },
     },
     cutout: "60%",
   };
 
-  useEffect(() => {
-    ChartJS.register(centerTextPluginObject);
-    return () => {
-      ChartJS.unregister(centerTextPluginObject);
-    };
-  }, []);
-
   const backgroundColor2 = generateData2();
-  function generateData2() {
-    console.log("labels2:", labels2);
-    //console.log("savedColors:", savedColors);
-    //console.log("backgroundColor1:", backgroundColor1);
 
+  function generateData2() {
     const backgroundColor2 = labels2.map((label, index) => {
       const savedColor = savedColors[label];
       if (savedColor) {
@@ -133,7 +127,6 @@ const DonutChart1 = () => {
       }
     });
 
-    // console.log("backgroundColor2:", backgroundColor2);
     return backgroundColor2;
   }
 
@@ -163,8 +156,38 @@ const DonutChart1 = () => {
     };
   });
 
+  useEffect(() => {
+    if (showCenterTextPlugin) {
+      ChartJS.register(centerTextPluginObject);
+    } else {
+      ChartJS.unregister(centerTextPluginObject);
+    }
+
+    return () => {
+      ChartJS.unregister(centerTextPluginObject);
+    };
+  }, [showCenterTextPlugin]);
+
+  const toggleCenterTextPlugin = () => {
+    setShowCenterTextPlugin((prev) => !prev);
+  };
+
+  useEffect(() => {
+    ChartJS.unregister(centerTextPluginObject);
+  }, []);
+
+  useEffect(() => {
+    if (showCenterTextPlugin) {
+      ChartJS.register(centerTextPluginObject);
+    }
+
+    return () => {
+      ChartJS.unregister(centerTextPluginObject);
+    };
+  }, [showCenterTextPlugin]);
+
   return (
-    <div className="flex flex-col w-full h-max-[443px] h-auto border rounded-lg shadow-lg ">
+    <div className="flex flex-col w-full h-max-[443px] h-auto border rounded-lg shadow-lg">
       <div className="border-b border-lightGrey p-5 font-inter-bold text-base leading-7 text-left text-lightBlack">
         Distribution of Investor Type
       </div>
@@ -173,9 +196,13 @@ const DonutChart1 = () => {
           <Doughnut data={data1} options={options1} className="sm:mr-2" />
         </div>
 
-        <img src={Icon} className="w-full h-auto md:rotate-0 rotate-90" />
+        <img
+          src={Icon}
+          className="w-full h-auto md:rotate-0 rotate-90 cursor-pointer"
+          onClick={toggleCenterTextPlugin}
+        />
 
-        <div className="w-auto h-auto mx-4 ">
+        <div className="w-auto h-auto mx-4">
           <Doughnut data={data2} options={options2} className="sm:mr-2" />
         </div>
       </div>

@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Icon from "../../../assets/images/Icons/Left.svg";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 const centerTextPluginObject = {
   id: "centerTextPlugin",
   beforeDraw: (chart) => {
     const ctx = chart.ctx;
     const canvas = chart.canvas;
     const text = chart.options.plugins.centerTextPlugin.text;
+    const showText = chart.options.plugins.centerTextPlugin.showText;
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
@@ -17,7 +19,7 @@ const centerTextPluginObject = {
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#272E35";
+    ctx.fillStyle = showText ? "#272E35" : "transparent";
     ctx.font = "600 14px Inter";
 
     ctx.fillText(text, centerX, centerY);
@@ -54,6 +56,8 @@ const DonutChart2 = () => {
     ],
   };
 
+  const [showCenterTextPlugin, setShowCenterTextPlugin] = useState(true);
+
   const options1 = {
     plugins: {
       legend: {
@@ -61,6 +65,7 @@ const DonutChart2 = () => {
       },
       centerTextPlugin: {
         text: "First Draft",
+        showText: showCenterTextPlugin,
       },
     },
     cutout: "60%",
@@ -73,6 +78,7 @@ const DonutChart2 = () => {
       },
       centerTextPlugin: {
         text: "Final Allocation",
+        showText: showCenterTextPlugin,
       },
     },
     cutout: "60%",
@@ -85,20 +91,28 @@ const DonutChart2 = () => {
     };
   }, []);
 
+  const toggleCenterTextPlugin = () => {
+    setShowCenterTextPlugin((prev) => !prev);
+  };
+
   return (
-    <div className="flex  flex-col w-full  h-max-[443px] h-auto border rounded-lg shadow-lg ">
+    <div className="flex flex-col w-full h-max-[443px] h-auto border rounded-lg shadow-lg">
       <div className="border-b border-lightGrey p-5 font-inter-bold text-base leading-7 text-left text-lightBlack">
         Distribution of Turnover Type
       </div>
-      <div class="flex justify-between mx-2 mt-8 sm:flex-row items-center flex-col sm:flex">
-        <div class="w-auto h-auto mx-4">
-          <Doughnut data={data} options={options1} class="sm:mr-2" />
+      <div className="flex justify-between mx-2 mt-8 sm:flex-row items-center flex-col sm:flex">
+        <div className="w-auto h-auto mx-4">
+          <Doughnut data={data} options={options1} className="sm:mr-2" />
         </div>
 
-        <img src={Icon} class="w-full h-auto md:rotate-0 rotate-90" />
+        <img
+          src={Icon}
+          className="w-full h-auto md:rotate-0 rotate-90 cursor-pointer"
+          onClick={toggleCenterTextPlugin}
+        />
 
-        <div class="w-auto h-auto mx-4 ">
-          <Doughnut data={data2} options={options2} class="sm:mr-2" />
+        <div className="w-auto h-auto mx-4">
+          <Doughnut data={data2} options={options2} className="sm:mr-2" />
         </div>
       </div>
 

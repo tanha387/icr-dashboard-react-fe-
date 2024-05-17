@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
-const BarChart = () => {
-  const [hoveredDataPoint, setHoveredDataPoint] = useState(null);
-  const [chartData, setChartData] = useState({
+const BarChart2 = () => {
+  const initialData = {
     labels: Array.from({ length: 64 }, (_, i) => (i + 1).toString()),
     datasets: [
       {
         label: "First Draft",
-        backgroundColor: "rgba(83, 136, 216, 0.6)",
+        backgroundColor: Array(64).fill("rgba(83, 136, 216, 0.6)"),
         borderColor: "rgba(83, 136, 216, 0.6)",
         borderWidth: 1,
         hoverBackgroundColor: "rgba(75,192,192,0.4)",
@@ -27,7 +26,7 @@ const BarChart = () => {
       },
       {
         label: "Final Allocation",
-        backgroundColor: "#F59638",
+        backgroundColor: Array(64).fill("#F59638"),
         borderColor: "#F59638",
         borderWidth: 1,
         data: [
@@ -42,19 +41,64 @@ const BarChart = () => {
         ].sort((a, b) => b - a),
       },
     ],
-  });
+  };
 
-  const handleBarHover = (event, chartElements) => {
-    if (chartElements && chartElements.length) {
-      setHoveredDataPoint(chartElements[0].index);
-    } else {
-      setHoveredDataPoint(null);
+  const [chartData, setChartData] = useState(initialData);
+  const [expandedDataIndex, setExpandedDataIndex] = useState(null);
+
+  const handleBarClick = (elems) => {
+    if (elems.length > 0) {
+      const { datasetIndex, index } = elems[0];
+
+      // Check if the clicked bar is already expanded
+      if (
+        expandedDataIndex !== null &&
+        expandedDataIndex.datasetIndex === datasetIndex &&
+        expandedDataIndex.index === index
+      ) {
+        // Collapse the clicked bar
+        setExpandedDataIndex(null);
+        revertChartData();
+      } else {
+        // Expand the clicked bar and collapse the previously expanded one
+        setExpandedDataIndex({ datasetIndex, index });
+        updateChartData(datasetIndex, index);
+      }
     }
   };
 
-  let options = {
+  const updateChartData = (datasetIndex, index) => {
+    setChartData((prevData) => {
+      const newData = { ...initialData }; // Use initialData as base for new data
+      newData.datasets = initialData.datasets.map((dataset, dsIndex) => {
+        if (dsIndex === datasetIndex) {
+          const newDatasetData = [...dataset.data];
+          newDatasetData[index] *= 1.8; // Increase the value by 10%
+
+          const newBackgroundColors = [...dataset.backgroundColor];
+          newBackgroundColors[index] = "rgba(255, 0, 0, 0.8)"; // Change color to indicate selection
+
+          return {
+            ...dataset,
+            data: newDatasetData,
+            backgroundColor: newBackgroundColors,
+          };
+        }
+        return dataset;
+      });
+      return newData;
+    });
+  };
+
+  const revertChartData = () => {
+    setTimeout(() => {
+      setChartData(initialData);
+    }, 2000); // Revert after 2 seconds
+  };
+
+  const options = {
     maintainAspectRatio: false,
-    onHover: handleBarHover,
+    onClick: (event, elements) => handleBarClick(elements),
     scales: {
       x: {
         legend: { display: true },
@@ -77,7 +121,7 @@ const BarChart = () => {
           color: "rgba(0, 0, 0, 0.38)",
           font: { family: "Inter", size: 12 },
           precision: 0,
-          callback: function (value, index, values) {
+          callback: function (value) {
             switch (value) {
               case 0:
                 return "0";
@@ -114,4 +158,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default BarChart2;
