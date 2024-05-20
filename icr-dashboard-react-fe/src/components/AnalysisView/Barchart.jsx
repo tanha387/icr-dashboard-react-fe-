@@ -59,7 +59,6 @@ const BarChart = () => {
       const dataIndex = activeElement.index;
       setClickedDataPoint(dataIndex);
 
-      // Store the previous data and clickedDataPoint
       const prevChartData = { ...chartData };
       const prevClickedDataPoint = dataIndex;
       setPreviousData({
@@ -67,7 +66,6 @@ const BarChart = () => {
         clickedDataPoint: prevClickedDataPoint,
       });
 
-      // Set a timer to revert back to the previous state after 1 second
       setTimeout(() => {
         setChartData(prevChartData);
         setClickedDataPoint(null);

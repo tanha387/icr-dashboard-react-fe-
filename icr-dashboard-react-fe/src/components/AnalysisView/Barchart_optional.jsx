@@ -50,17 +50,14 @@ const BarChart2 = () => {
     if (elems.length > 0) {
       const { datasetIndex, index } = elems[0];
 
-      // Check if the clicked bar is already expanded
       if (
         expandedDataIndex !== null &&
         expandedDataIndex.datasetIndex === datasetIndex &&
         expandedDataIndex.index === index
       ) {
-        // Collapse the clicked bar
         setExpandedDataIndex(null);
         revertChartData();
       } else {
-        // Expand the clicked bar and collapse the previously expanded one
         setExpandedDataIndex({ datasetIndex, index });
         updateChartData(datasetIndex, index);
       }
@@ -69,14 +66,14 @@ const BarChart2 = () => {
 
   const updateChartData = (datasetIndex, index) => {
     setChartData((prevData) => {
-      const newData = { ...initialData }; // Use initialData as base for new data
+      const newData = { ...initialData };
       newData.datasets = initialData.datasets.map((dataset, dsIndex) => {
         if (dsIndex === datasetIndex) {
           const newDatasetData = [...dataset.data];
-          newDatasetData[index] *= 1.8; // Increase the value by 10%
+          newDatasetData[index] *= 1.8;
 
           const newBackgroundColors = [...dataset.backgroundColor];
-          newBackgroundColors[index] = "rgba(255, 0, 0, 0.8)"; // Change color to indicate selection
+          newBackgroundColors[index] = "rgba(255, 0, 0, 0.8)";
 
           return {
             ...dataset,
@@ -93,7 +90,7 @@ const BarChart2 = () => {
   const revertChartData = () => {
     setTimeout(() => {
       setChartData(initialData);
-    }, 2000); // Revert after 2 seconds
+    }, 2000);
   };
 
   const options = {
