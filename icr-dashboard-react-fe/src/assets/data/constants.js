@@ -232,6 +232,7 @@ export const icrIndiviualIpoBodyData = [
       finalAllocation: "3100000",
       allocation: "1800000",
       percentOfAllocation: "8.34",
+      date: "2/4/5",
       percentOfChange: "-10",
       focus: "Aggressive",
       days: "45",
@@ -294,6 +295,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "4.34",
       percentOfChange: "-60",
       days: "-15",
+      date: "12/4/5",
       focus: "Aggressive",
       indication: "50000000",
       subcategories: [
@@ -357,6 +359,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       focus: "Aggressive",
       percentOfChange: "20",
+      date: "2/4/15",
       days: "-12",
       subcategories: [
         {
@@ -419,6 +422,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfChange: "-30",
       focus: "Aggressive",
       days: "5",
+      date: "2/5/5",
       subcategories: [
         {
           investorName: "GSMA Capital LLC MANAGEMENT INCORPORATED",
@@ -479,6 +483,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
       focus: "Yield",
+      date: "22/4/5",
       days: "12",
       subcategories: [
         {
@@ -540,6 +545,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
       focus: "Yield",
+      date: "12/4/10",
       days: "5",
       subcategories: [
         {
@@ -601,6 +607,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
       focus: "Yield",
+      date: "2/10/15",
       days: "88",
       subcategories: [
         {
@@ -662,6 +669,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfAllocation: "8.34",
       percentOfChange: "-10",
       focus: "Yield",
+      date: "20/4/5",
       days: "-45",
       subcategories: [
         {
@@ -724,6 +732,7 @@ export const icrIndiviualIpoBodyData = [
       percentOfChange: "-10",
       allocation: "1800000",
       focus: "Yield",
+      date: "23/4/5",
       days: "-25",
       subcategories: [
         {
